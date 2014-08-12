@@ -98,7 +98,7 @@ class PatternGraph(object):
         while len(leaf_nodes):
             n = leaf_nodes.pop(0)
             for m in self.nodes[n]["out"]:
-                self.nodes[m]["in"] = list(set(self.nodes[m]["in"]) - set(n))
+                self.nodes[m]["in"] = [v for v in self.nodes[m]["in"] if v != n]
                 if not len(self.nodes[m]["in"]):
                     leaf_nodes.append(m)
             self.nodes[n]["out"] = []
